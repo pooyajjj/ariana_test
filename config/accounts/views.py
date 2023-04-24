@@ -24,9 +24,7 @@ class UserListView(generics.ListAPIView):
 
 
 class UserCreateView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (AllowAny,)
 
 
 class UserUpdateView(generics.UpdateAPIView):
