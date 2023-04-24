@@ -1,9 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import UserSerializer
-from utils.jwt import generate_jwt
-from django.contrib.auth import authenticate
-from django.http import JsonResponse
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -40,22 +37,3 @@ class UserUpdateView(generics.UpdateAPIView):
 class UserDeleteView(generics.DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
-# def login(request):
-#     # Get the username and password from the request
-#     username = request.POST.get('username')
-#     password = request.POST.get('password')
-
-#     # Authenticate the user
-#     user = authenticate(request, username=username, password=password)
-
-#     if user is not None:
-#         # Generate a JWT token for the user
-#         token = generate_jwt(user)
-
-#         # Return the token in a JSON response
-#         return JsonResponse({'token': token})
-#     else:
-#         # Return an error message
-#         return JsonResponse({'error': 'Invalid credentials'})
